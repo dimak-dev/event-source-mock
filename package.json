@@ -1,0 +1,25 @@
+{
+  "name": "event-source-mock",
+  "version": "1.0.0",
+  "description": "EventSource Mock",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dimak-dev/event-source-mock.git"
+  },
+  "keywords": [
+    "mock",
+    "sse",
+    "EventSource",
+    "test"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dimak-dev/event-source-mock/issues"
+  },
+  "homepage": "https://github.com/dimak-dev/event-source-mock#readme"
+}
