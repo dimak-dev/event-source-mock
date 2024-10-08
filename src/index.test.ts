@@ -1,32 +1,75 @@
-import helloWorld from "./index";
+import {
+    disableEventSourceMock,
+    enableEventSourceMock,
+    EventSourceMock,
+    EventSourceMockIsAlreadyEnabledError,
+    EventSourceMockIsNotEnabledYetError,
+} from "./index";
 
-describe('index.ts', () => {
-    let consoleLogMock: jest.Spied<typeof console['log']>;
-
-    beforeAll(() => {
-        consoleLogMock = jest.spyOn(console, 'log')
-            .mockImplementation();
-    });
-
-    afterAll(() => {
-        consoleLogMock.mockRestore();
-    });
-
+describe('Enable and disable mock', () => {
     afterEach(() => {
-        consoleLogMock.mockReset();
+        try {
+            disableEventSourceMock();
+        } catch (_) {
+        }
     });
 
-    test('should be 42', () => {
-        expect(helloWorld())
-            .toEqual(42);
+
+    test('There is no EventSource before initialization', () => {
+        expect(globalThis.EventSource)
+            .toStrictEqual(undefined);
     });
 
-    test('calling console.log', () => {
-        helloWorld();
+    test('Throws error on multiple initialization', () => {
+        const fn = () => enableEventSourceMock();
 
-        expect(consoleLogMock)
-            .toHaveBeenCalledTimes(1);
-        expect(consoleLogMock)
-            .toHaveBeenCalledWith('hello world');
+        expect(fn)
+            .not
+            .toThrow();
+
+        expect(fn)
+            .toThrowError(EventSourceMockIsAlreadyEnabledError);
+
     });
+
+    test('Throws error on disabling without previously initialization', () => {
+        const fn = () => disableEventSourceMock();
+
+        expect(fn)
+            .toThrowError(EventSourceMockIsNotEnabledYetError);
+    });
+
+    test('Throws error on multiple disabling', () => {
+        enableEventSourceMock();
+        const fn = () => disableEventSourceMock();
+
+        expect(fn)
+            .not
+            .toThrow();
+
+        expect(fn)
+            .toThrowError(EventSourceMockIsNotEnabledYetError);
+    });
+
+    test('globalThis has EventSource (type is EventSourceMock) after enabling', () => {
+        enableEventSourceMock();
+
+        expect(globalThis.EventSource)
+            .toStrictEqual(EventSourceMock);
+    });
+
+    test('globalThis has again no EventSource after disabling', () => {
+        const previous = globalThis.EventSource;
+
+        // if fails on this line - check other tests.
+        expect(globalThis.EventSource).toStrictEqual(undefined);
+
+        enableEventSourceMock();
+        disableEventSourceMock();
+
+        expect(globalThis.EventSource)
+            .toStrictEqual(previous);
+    });
+
+
 });
