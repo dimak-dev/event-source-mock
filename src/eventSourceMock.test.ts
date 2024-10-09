@@ -1,4 +1,4 @@
-import {EventSourceMock} from "./EventSourceMock";
+import {EventSourceMock} from "./eventSourceMock";
 
 class EventSourceMockTest extends EventSourceMock {
     /**

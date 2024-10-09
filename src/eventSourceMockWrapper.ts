@@ -1,5 +1,5 @@
 import EventSourceMockIsAlreadyEnabledError from "./errors/EventSourceMockIsAlreadyEnabledError";
-import {EventSourceMock} from "./EventSourceMock";
+import {EventSourceMock} from "./eventSourceMock";
 import EventSourceMockIsNotEnabledYetError from "./errors/EventSourceMockIsNotEnabledYetError";
 
 /**

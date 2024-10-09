@@ -2,7 +2,7 @@ import {
     EventSourceMockIsAlreadyEnabledError,
     EventSourceMockIsNotEnabledYetError,
 } from "./index";
-import {EventSourceMock} from "./EventSourceMock";
+import {EventSourceMock} from "./eventSourceMock";
 import {EventSourceMockWrapper} from "./eventSourceMockWrapper";
 
 describe('class EventSourceMockWrapper', () => {
