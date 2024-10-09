@@ -18,17 +18,17 @@ the behavior of `EventSource` without requiring an actual server connection.
 To install the mock, you can use NPM:
 
 ```bash
-npm install event-source-mock
+npm install @dimak.dev/event-source-mock
 ```
 
 or Yarn:
 ```bash
-yarn add event-source-mock
+yarn add @dimak.dev/event-source-mock
 ```
 
 or PNPM:
 ```bash
-pnpm add event-source-mock
+pnpm add @dimak.dev/event-source-mock
 ```
 
 ## Usage
@@ -40,9 +40,9 @@ Below is a basic example of how to use the `EventSourceMock` in your unit tests.
 To enable `EventSourceMock` in your test:
 
 ```javascript
-import eventSourceMock from 'event-source-mock';
+import eventSourceMock from '@dimak.dev/event-source-mock';
 // OR
-const eventSourceMock = require('event-source-mock').default;
+const eventSourceMock = require('@dimak.dev/event-source-mock').default;
 
 describe('Your test', () => {
   beforeAll(() => {
@@ -58,9 +58,9 @@ And now you can test your code with EventSource.
 After test execution it is recommended to restoring default implementation of `EventSource`. To do this:
 
 ```javascript
-import eventSourceMock from 'event-source-mock';
+import eventSourceMock from '@dimak.dev/event-source-mock';
 // OR
-const eventSourceMock = require('event-source-mock').default;
+const eventSourceMock = require('@dimak.dev/event-source-mock').default;
 
 describe('Your test', () => {
   afterAll(() => {

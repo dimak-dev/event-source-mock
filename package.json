@@ -1,5 +1,5 @@
 {
-  "name": "event-source-mock",
+  "name": "@dimak.dev/event-source-mock",
   "version": "1.0.0",
   "description": "EventSource Mock",
   "main": "index.js",
