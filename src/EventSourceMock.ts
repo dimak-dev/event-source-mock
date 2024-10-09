@@ -63,10 +63,6 @@ export class EventSourceMock implements EventSource {
         return true;
     }
 
-    addEventListener<K extends keyof EventSourceEventMap>(type: K, listener: (this: EventSource, ev: EventSourceEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-    addEventListener(type: string, listener: (this: EventSource, event: MessageEvent) => any, options?: boolean | AddEventListenerOptions): void;
-    addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-    addEventListener(type: string, callback: EventListenerOrEventListenerObject | null, options?: AddEventListenerOptions | boolean): void;
     addEventListener(type: string, listener: (...args: any[]) => void, options?: boolean | AddEventListenerOptions): void {
         let set = this.eventListenersMap.get(type);
 
@@ -78,10 +74,6 @@ export class EventSourceMock implements EventSource {
         set.add(listener);
     }
 
-    removeEventListener<K extends keyof EventSourceEventMap>(type: K, listener: (this: EventSource, ev: EventSourceEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-    removeEventListener(type: string, listener: (this: EventSource, event: MessageEvent) => any, options?: boolean | EventListenerOptions): void;
-    removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    removeEventListener(type: string, callback: EventListenerOrEventListenerObject | null, options?: EventListenerOptions | boolean): void;
     removeEventListener(type: string, listener: (...args: any[]) => void, options?: boolean | EventListenerOptions): void {
         this.eventListenersMap.get(type)?.delete(listener);
     }
