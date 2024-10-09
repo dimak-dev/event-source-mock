@@ -1,4 +1,6 @@
-export class EventSourceMock implements EventSource {
+import EventSourceMockWrapper from "./eventSourceMockWrapper";
+
+export default class EventSourceMock implements EventSource {
     readonly CLOSED: 2;
     readonly CONNECTING: 0;
     readonly OPEN: 1;
@@ -27,6 +29,8 @@ export class EventSourceMock implements EventSource {
         this.readyState = this.CONNECTING;
 
         this.eventListenersMap = new Map();
+
+        EventSourceMockWrapper.onMockInstantiated(this);
     }
 
     close(): void {

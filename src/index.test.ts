@@ -1,5 +1,5 @@
 import * as index from './index';
-import {EventSourceMockWrapper} from "./eventSourceMockWrapper";
+import EventSourceMockWrapper from "./eventSourceMockWrapper";
 
 describe('Exports from module', () => {
     test('default export is instance of EventSourceMockWrapper', () => {

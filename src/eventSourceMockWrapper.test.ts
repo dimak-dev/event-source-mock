@@ -2,8 +2,9 @@ import {
     EventSourceMockIsAlreadyEnabledError,
     EventSourceMockIsNotEnabledYetError,
 } from "./index";
-import {EventSourceMock} from "./eventSourceMock";
-import {EventSourceMockWrapper} from "./eventSourceMockWrapper";
+import EventSourceMock from "./eventSourceMock";
+import EventSourceMockWrapper from "./eventSourceMockWrapper";
+import EventSourceMockInstance from "./eventSourceMockInstance";
 
 describe('class EventSourceMockWrapper', () => {
     let eventSourceMockWrapper: EventSourceMockWrapper;
@@ -54,6 +55,9 @@ describe('class EventSourceMockWrapper', () => {
             eventSourceMockWrapper.mockInit();
         });
         afterEach(() => {
+            eventSourceMockWrapper.mockReset();
+        });
+        afterAll(() => {
             eventSourceMockWrapper.mockRestore();
         });
 
@@ -69,6 +73,19 @@ describe('class EventSourceMockWrapper', () => {
                 .toStrictEqual(EventSourceMock);
         });
 
-    });
+        test('pushing and getting instances and the latest instance', () => {
+            const mockInstance1 = new EventSourceMock('');
+            const mockInstance2 = new EventSourceMock('');
 
+            expect(eventSourceMockWrapper.instances)
+                .toHaveLength(2);
+            expect(eventSourceMockWrapper.instances[0])
+                .toHaveProperty('mock', mockInstance1);
+            expect(eventSourceMockWrapper.instances[1])
+                .toHaveProperty('mock', mockInstance2);
+
+            expect(eventSourceMockWrapper.latestInstance?.mock)
+                .toEqual(mockInstance2);
+        });
+    });
 });

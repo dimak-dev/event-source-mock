@@ -1,4 +1,4 @@
-import {EventSourceMock} from "./eventSourceMock";
+import EventSourceMock from "./eventSourceMock";
 
 class EventSourceMockTest extends EventSourceMock {
     /**
@@ -10,7 +10,6 @@ class EventSourceMockTest extends EventSourceMock {
 }
 
 describe('EventSource Mock', () => {
-
     describe('constructor', () => {
         test('URL as string', () => {
             expect(new EventSourceMock('https://example.com/test'))
@@ -239,7 +238,5 @@ describe('EventSource Mock', () => {
             expect(listener2)
                 .toHaveBeenCalledWith(expectedOnMessageEvent);
         });
-    })
-
-
+    });
 });
